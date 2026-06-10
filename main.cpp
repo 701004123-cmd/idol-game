@@ -167,46 +167,150 @@ void craft(){
 }
 
 int main(){
-        InitWindow(1280, 720, "Idol Game");
+    InitWindow(1280, 720, "Idol Game");
     SetTargetFPS(60);
 
-        // button rectangles
+    int screen = 0; // 0=menu, 1=gather, 2=refine, 3=craft, 4=inventory
+    bool gathering = false;
+    float gatherProgress = 0.0f;
+    double gatherStart = 0.0;
+    int totalGathered = 0;
+
+    // menu buttons
     Rectangle btnGather    = {490, 200, 300, 60};
     Rectangle btnRefine    = {490, 290, 300, 60};
     Rectangle btnCraft     = {490, 380, 300, 60};
     Rectangle btnInventory = {490, 470, 300, 60};
 
+    // tier buttons
+    Rectangle tierBtns[8];
+    for(int i = 0; i < 8; i++){
+        tierBtns[i] = {100.0f + i * 140.0f, 300, 120, 60};
+    }
+
+    // start/stop button
+    Rectangle btnStart = {540, 500, 200, 60};
+
+    // back button
+    Rectangle btnBack = {20, 20, 100, 40};
+
+    const char* pickNames[8] = {"Stone Pick", "Copper Pick", "Iron Pick", "Steel Pick", "Titanium Pick", "Mithril Pick", "Adamant Pick", "Dragon Pick"};
+
     while(!WindowShouldClose()){
         Vector2 mouse = GetMousePosition();
+        bool clicked = IsMouseButtonPressed(MOUSE_LEFT_BUTTON);
+        float dt = GetFrameTime();
+
+        // gathering progress update
+        if(gathering && gatheringTier > 0){
+            float duration = geders1.ore[gatheringTier-1].durability * gedering1.gatheringSpeed;
+            gatherProgress += dt / duration;
+            if(gatherProgress >= 1.0f){
+                gatherProgress = 0.0f;
+                int yield = (int)(gedering1.gatheringYield);
+                totalGathered += yield;
+                addToInventory(geders1.ore[gatheringTier-1].name, yield);
+            }
+        }
+
+        // input
+        if(screen == 0){
+            if(clicked){
+                if(CheckCollisionPointRec(mouse, btnGather))    { screen = 1; gathering = false; gatherProgress = 0; totalGathered = 0; }
+                if(CheckCollisionPointRec(mouse, btnRefine))    screen = 2;
+                if(CheckCollisionPointRec(mouse, btnCraft))     screen = 3;
+                if(CheckCollisionPointRec(mouse, btnInventory)) screen = 4;
+            }
+        }
+        else if(screen == 1){
+            if(clicked){
+                if(CheckCollisionPointRec(mouse, btnBack)){ screen = 0; gathering = false; }
+                for(int i = 0; i < 8; i++){
+                    if(CheckCollisionPointRec(mouse, tierBtns[i])) gatheringTier = i + 1;
+                }
+                if(CheckCollisionPointRec(mouse, btnStart)) gathering = !gathering;
+            }
+        }
+        else{
+            if(clicked && CheckCollisionPointRec(mouse, btnBack)) screen = 0;
+        }
 
         BeginDrawing();
         ClearBackground({20, 20, 20, 255});
 
-        // title
-        DrawText("IDOL GAME", 500, 100, 50, WHITE);
+        if(screen == 0){
+            DrawText("IDOL GAME", 500, 100, 50, WHITE);
 
-        // gather button
-        Color cGather = CheckCollisionPointRec(mouse, btnGather) ? GRAY : DARKGRAY;
-        DrawRectangleRec(btnGather, cGather);
-        DrawText("GATHERING", 545, 218, 25, WHITE);
+            Color cG = CheckCollisionPointRec(mouse, btnGather) ? GRAY : DARKGRAY;
+            DrawRectangleRec(btnGather, cG);
+            DrawText("GATHERING", 545, 218, 25, WHITE);
 
-        // refine button
-        Color cRefine = CheckCollisionPointRec(mouse, btnRefine) ? GRAY : DARKGRAY;
-        DrawRectangleRec(btnRefine, cRefine);
-        DrawText("REFINING", 552, 308, 25, WHITE);
+            Color cR = CheckCollisionPointRec(mouse, btnRefine) ? GRAY : DARKGRAY;
+            DrawRectangleRec(btnRefine, cR);
+            DrawText("REFINING", 552, 308, 25, WHITE);
 
-        // craft button
-        Color cCraft = CheckCollisionPointRec(mouse, btnCraft) ? GRAY : DARKGRAY;
-        DrawRectangleRec(btnCraft, cCraft);
-        DrawText("CRAFTING", 552, 398, 25, WHITE);
+            Color cC = CheckCollisionPointRec(mouse, btnCraft) ? GRAY : DARKGRAY;
+            DrawRectangleRec(btnCraft, cC);
+            DrawText("CRAFTING", 552, 398, 25, WHITE);
 
-        // inventory button
-        Color cInv = CheckCollisionPointRec(mouse, btnInventory) ? GRAY : DARKGRAY;
-        DrawRectangleRec(btnInventory, cInv);
-        DrawText("INVENTORY", 545, 488, 25, WHITE);
+            Color cI = CheckCollisionPointRec(mouse, btnInventory) ? GRAY : DARKGRAY;
+            DrawRectangleRec(btnInventory, cI);
+            DrawText("INVENTORY", 545, 488, 25, WHITE);
+        }
+        else if(screen == 1){
+            DrawText("GATHERING", 530, 50, 40, WHITE);
+
+            // back
+            DrawRectangleRec(btnBack, DARKGRAY);
+            DrawText("BACK", 38, 30, 20, WHITE);
+
+            // tier buttons
+            DrawText("Select Tier:", 100, 260, 25, LIGHTGRAY);
+            for(int i = 0; i < 8; i++){
+                Color c = (gatheringTier == i+1) ? GOLD : (CheckCollisionPointRec(mouse, tierBtns[i]) ? GRAY : DARKGRAY);
+                DrawRectangleRec(tierBtns[i], c);
+                DrawText(TextFormat("T%d", i+1), (int)tierBtns[i].x + 45, (int)tierBtns[i].y + 18, 25, WHITE);
+            }
+
+            // required tool
+            if(gatheringTier > 0){
+                DrawText("Required Tool:", 100, 400, 25, LIGHTGRAY);
+                DrawText(pickNames[gatheringTier-1], 100, 435, 25, YELLOW);
+            }
+
+            // progress bar
+            DrawText("Progress:", 100, 510, 25, LIGHTGRAY);
+            DrawRectangle(100, 540, 800, 40, DARKGRAY);
+            DrawRectangle(100, 540, (int)(800 * gatherProgress), 40, GREEN);
+            DrawRectangleLines(100, 540, 800, 40, WHITE);
+
+            // total gathered
+            DrawText(TextFormat("Gathered: %d", totalGathered), 100, 595, 25, WHITE);
+
+            // start/stop button
+            Color cBtn = gathering ? RED : GREEN;
+            DrawRectangleRec(btnStart, cBtn);
+            DrawText(gathering ? "STOP" : "START", gathering ? 600 : 595, 518, 25, WHITE);
+        }
+        else if(screen == 2){
+            DrawText("REFINING", 540, 50, 40, WHITE);
+            DrawRectangleRec(btnBack, DARKGRAY);
+            DrawText("BACK", 38, 30, 20, WHITE);
+        }
+        else if(screen == 3){
+            DrawText("CRAFTING", 540, 50, 40, WHITE);
+            DrawRectangleRec(btnBack, DARKGRAY);
+            DrawText("BACK", 38, 30, 20, WHITE);
+        }
+        else if(screen == 4){
+            DrawText("INVENTORY", 520, 50, 40, WHITE);
+            DrawRectangleRec(btnBack, DARKGRAY);
+            DrawText("BACK", 38, 30, 20, WHITE);
+        }
 
         EndDrawing();
     }
 
     CloseWindow();
+    return 0;
 }
