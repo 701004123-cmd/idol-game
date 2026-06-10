@@ -170,10 +170,41 @@ int main(){
         InitWindow(1280, 720, "Idol Game");
     SetTargetFPS(60);
 
+        // button rectangles
+    Rectangle btnGather    = {490, 200, 300, 60};
+    Rectangle btnRefine    = {490, 290, 300, 60};
+    Rectangle btnCraft     = {490, 380, 300, 60};
+    Rectangle btnInventory = {490, 470, 300, 60};
+
     while(!WindowShouldClose()){
+        Vector2 mouse = GetMousePosition();
+
         BeginDrawing();
-        ClearBackground(BLACK);
-        DrawText("Idol Game", 100, 100, 40, WHITE);
+        ClearBackground({20, 20, 20, 255});
+
+        // title
+        DrawText("IDOL GAME", 500, 100, 50, WHITE);
+
+        // gather button
+        Color cGather = CheckCollisionPointRec(mouse, btnGather) ? GRAY : DARKGRAY;
+        DrawRectangleRec(btnGather, cGather);
+        DrawText("GATHERING", 545, 218, 25, WHITE);
+
+        // refine button
+        Color cRefine = CheckCollisionPointRec(mouse, btnRefine) ? GRAY : DARKGRAY;
+        DrawRectangleRec(btnRefine, cRefine);
+        DrawText("REFINING", 552, 308, 25, WHITE);
+
+        // craft button
+        Color cCraft = CheckCollisionPointRec(mouse, btnCraft) ? GRAY : DARKGRAY;
+        DrawRectangleRec(btnCraft, cCraft);
+        DrawText("CRAFTING", 552, 398, 25, WHITE);
+
+        // inventory button
+        Color cInv = CheckCollisionPointRec(mouse, btnInventory) ? GRAY : DARKGRAY;
+        DrawRectangleRec(btnInventory, cInv);
+        DrawText("INVENTORY", 545, 488, 25, WHITE);
+
         EndDrawing();
     }
 
