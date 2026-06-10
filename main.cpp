@@ -3,7 +3,6 @@
 #include <ctime>
 #include <cmath>
 #include "character.h"
-#include "level.h"
 #include "item.h"
 using namespace std;
 // global objects
@@ -168,5 +167,15 @@ void craft(){
 }
 
 int main(){
+        InitWindow(1280, 720, "Idol Game");
+    SetTargetFPS(60);
 
+    while(!WindowShouldClose()){
+        BeginDrawing();
+        ClearBackground(BLACK);
+        DrawText("Idol Game", 100, 100, 40, WHITE);
+        EndDrawing();
+    }
+
+    CloseWindow();
 }

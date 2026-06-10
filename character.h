@@ -1,6 +1,8 @@
+#pragma once
 #include <iostream>
-#include <level.h>
 #include <vector>
+#include "level.h"
+using namespace std;
 
 using namespace std;
 
@@ -9,37 +11,57 @@ class character{
         string name;
         int gold;
 };
-//gedering level
+
 class gedering: public character{
-    level gedering;
-
-};
-//refining level
-class refining: public character{
-    level refining;
-
-};
-//crafting level
-class crafting: public character{
-    level crafting;
-
-};
-//fighting level 
-class fighting: public character{
-    level fighting;
-};
-
-//inventory
-class inventory: public character{
-    vector<string> objectName;
-    vector<int> objectQuality;
-
-    void putObjectsInvantory (string name,int number){
-        objectName.push_back(name);
-        for(int i=0; i<objectName.size(); i++){
-            if(name==objectName[i]){
-               objectQuality[i].push_back(number); 
-            }
+    public:
+        level gatheringLevel;
+        float gatheringSpeed;
+        float gatheringYield;
+        gedering(){
+            gatheringSpeed = 1 + (gatheringLevel.level * 0.5);
+            gatheringYield = 1 + (gatheringLevel.level * 0.05);
         }
-    }
+};
+
+class refining: public character{
+    public:
+        level refiningLevel;
+        float refiningEfficiency;
+        refining(){
+            refiningEfficiency = 1 + (refiningLevel.level * 0.05);
+        }
+};
+
+class crafting: public character{
+    public:
+        level craftingLevel;
+        float craftingEfficiency;
+        crafting(){
+            craftingEfficiency = 1 + (craftingLevel.level * 0.05);
+        }
+};
+
+class fighting: public character{
+    public:
+        level fightingLevel;
+        float fightingMastery;
+        fighting(){
+            fightingMastery = 1 + (fightingLevel.level * 0.01);
+        }
+};
+
+struct inventoryItem{
+    string name;
+    int number;
+};
+
+class inventory: public character{
+    public:
+        vector<inventoryItem> items;
+        void putObjectsInventory(string name, int number){
+            inventoryItem item;
+            item.name = name;
+            item.number = number;
+            items.push_back(item);
+        }
 };
