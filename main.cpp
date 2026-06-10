@@ -1,19 +1,19 @@
-#include "raylib.h"
+#include <iostream>
+#include <ctime>
 
-int main() {
-    InitWindow(800, 450, "raylib 6 works!");
+using namespace std;
 
-    SetTargetFPS(60);
+void timer(bool starter){
+    int seond
 
-    while (!WindowShouldClose()) {
-        BeginDrawing();
-
-        ClearBackground(RAYWHITE);
-        DrawText("It works with raylib 6!", 190, 200, 20, LIGHTGRAY);
-
-        EndDrawing();
+    while (true) {
+        int s  = saniye / 3600;
+        int dk = (saniye % 3600) / 60;
+        int sn = saniye % 60;
     }
-
-    CloseWindow();
     return 0;
+} 
+
+int main(){
+
 }
