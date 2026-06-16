@@ -4,8 +4,6 @@
 #include "level.h"
 using namespace std;
 
-using namespace std;
-
 class character{
     public:
         string name;
@@ -18,8 +16,8 @@ class gedering: public character{
         float gatheringSpeed;
         float gatheringYield;
         gedering(){
-            gatheringSpeed = 1 + (gatheringLevel.level * 0.5);
-            gatheringYield = 1 + (gatheringLevel.level * 0.05);
+            gatheringSpeed = 1 + (gatheringLevel.level * 0.5f);
+            gatheringYield = 1 + (gatheringLevel.level * 0.05f);
         }
 };
 
@@ -28,7 +26,7 @@ class refining: public character{
         level refiningLevel;
         float refiningEfficiency;
         refining(){
-            refiningEfficiency = 1 + (refiningLevel.level * 0.05);
+            refiningEfficiency = 1 + (refiningLevel.level * 0.05f);
         }
 };
 
@@ -37,7 +35,7 @@ class crafting: public character{
         level craftingLevel;
         float craftingEfficiency;
         crafting(){
-            craftingEfficiency = 1 + (craftingLevel.level * 0.05);
+            craftingEfficiency = 1 + (craftingLevel.level * 0.05f);
         }
 };
 
@@ -46,7 +44,7 @@ class fighting: public character{
         level fightingLevel;
         float fightingMastery;
         fighting(){
-            fightingMastery = 1 + (fightingLevel.level * 0.01);
+            fightingMastery = 1 + (fightingLevel.level * 0.01f);
         }
 };
 

@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
 struct oreInfo{
@@ -28,163 +27,80 @@ struct armorInfo{
 class geders{
     public:
         vector<oreInfo> ore = {
-            {"oreT1", 1, 10},
-            {"oreT2", 2, 50},
-            {"oreT3", 3, 100},
-            {"oreT4", 4, 500},
-            {"oreT5", 5, 1000},
-            {"oreT6", 6, 5000},
-            {"oreT7", 7, 10000},
-            {"oreT8", 8, 50000000}
+            {"Stone Ore",1,10},{"Copper Ore",2,50},{"Iron Ore",3,100},{"Steel Ore",4,500},
+            {"Titanium Ore",5,1000},{"Mithril Ore",6,5000},{"Adamant Ore",7,10000},{"Dragon Ore",8,50000000}
         };
         vector<oreInfo> wood = {
-            {"woodT1", 1, 10},
-            {"woodT2", 2, 50},
-            {"woodT3", 3, 100},
-            {"woodT4", 4, 500},
-            {"woodT5", 5, 1000},
-            {"woodT6", 6, 5000},
-            {"woodT7", 7, 10000},
-            {"woodT8", 8, 50000000}
+            {"Stone Wood",1,10},{"Copper Wood",2,50},{"Iron Wood",3,100},{"Steel Wood",4,500},
+            {"Titanium Wood",5,1000},{"Mithril Wood",6,5000},{"Adamant Wood",7,10000},{"Dragon Wood",8,50000000}
         };
         vector<oreInfo> leather = {
-            {"leatherT1", 1, 10},
-            {"leatherT2", 2, 50},
-            {"leatherT3", 3, 100},
-            {"leatherT4", 4, 500},
-            {"leatherT5", 5, 1000},
-            {"leatherT6", 6, 5000},
-            {"leatherT7", 7, 10000},
-            {"leatherT8", 8, 50000000}
+            {"Stone Leather",1,10},{"Copper Leather",2,50},{"Iron Leather",3,100},{"Steel Leather",4,500},
+            {"Titanium Leather",5,1000},{"Mithril Leather",6,5000},{"Adamant Leather",7,10000},{"Dragon Leather",8,50000000}
         };
         vector<oreInfo> wool = {
-            {"woolT1", 1, 10},
-            {"woolT2", 2, 50},
-            {"woolT3", 3, 100},
-            {"woolT4", 4, 500},
-            {"woolT5", 5, 1000},
-            {"woolT6", 6, 5000},
-            {"woolT7", 7, 10000},
-            {"woolT8", 8, 50000000}
+            {"Stone Wool",1,10},{"Copper Wool",2,50},{"Iron Wool",3,100},{"Steel Wool",4,500},
+            {"Titanium Wool",5,1000},{"Mithril Wool",6,5000},{"Adamant Wool",7,10000},{"Dragon Wool",8,50000000}
         };
 };
 
 class refins{
     public:
         vector<refinInfo> bar = {
-            {"barT1", 10},
-            {"barT2", 50},
-            {"barT3", 100},
-            {"barT4", 500},
-            {"barT5", 1000},
-            {"barT6", 5000},
-            {"barT7", 10000},
-            {"barT8", 50000000}
+            {"Stone Bar",10},{"Copper Bar",50},{"Iron Bar",100},{"Steel Bar",500},
+            {"Titanium Bar",1000},{"Mithril Bar",5000},{"Adamant Bar",10000},{"Dragon Bar",50000000}
         };
         vector<refinInfo> plank = {
-            {"plankT1", 10},
-            {"plankT2", 50},
-            {"plankT3", 100},
-            {"plankT4", 500},
-            {"plankT5", 1000},
-            {"plankT6", 5000},
-            {"plankT7", 10000},
-            {"plankT8", 50000000}
+            {"Stone Plank",10},{"Copper Plank",50},{"Iron Plank",100},{"Steel Plank",500},
+            {"Titanium Plank",1000},{"Mithril Plank",5000},{"Adamant Plank",10000},{"Dragon Plank",50000000}
         };
         vector<refinInfo> refinedLeather = {
-            {"refinedLeatherT1", 10},
-            {"refinedLeatherT2", 50},
-            {"refinedLeatherT3", 100},
-            {"refinedLeatherT4", 500},
-            {"refinedLeatherT5", 1000},
-            {"refinedLeatherT6", 5000},
-            {"refinedLeatherT7", 10000},
-            {"refinedLeatherT8", 50000000}
+            {"Stone Refined Leather",10},{"Copper Refined Leather",50},{"Iron Refined Leather",100},{"Steel Refined Leather",500},
+            {"Titanium Refined Leather",1000},{"Mithril Refined Leather",5000},{"Adamant Refined Leather",10000},{"Dragon Refined Leather",50000000}
         };
         vector<refinInfo> fabric = {
-            {"fabricT1", 10},
-            {"fabricT2", 50},
-            {"fabricT3", 100},
-            {"fabricT4", 500},
-            {"fabricT5", 1000},
-            {"fabricT6", 5000},
-            {"fabricT7", 10000},
-            {"fabricT8", 50000000}
+            {"Stone Fabric",10},{"Copper Fabric",50},{"Iron Fabric",100},{"Steel Fabric",500},
+            {"Titanium Fabric",1000},{"Mithril Fabric",5000},{"Adamant Fabric",10000},{"Dragon Fabric",50000000}
         };
-
         int durability = 1;
 };
 
 class crafts{
     public:
         vector<toolInfo> axe = {
-            {"axeT1", 2},
-            {"axeT2", 4},
-            {"axeT3", 6},
-            {"axeT4", 8},
-            {"axeT5", 10},
-            {"axeT6", 12},
-            {"axeT7", 14}, 
-            {"axeT8", 16}
+            {"Stone Axe",2},{"Copper Axe",4},{"Iron Axe",6},{"Steel Axe",8},
+            {"Titanium Axe",10},{"Mithril Axe",12},{"Adamant Axe",14},{"Dragon Axe",16}
         };
         vector<toolInfo> pick = {
-            {"pickT1", 2}, 
-            {"pickT2", 4}, 
-            {"pickT3", 6}, 
-            {"pickT4", 8},
-            {"pickT5", 10}, 
-            {"pickT6", 12}, 
-            {"pickT7", 14}, 
-            {"pickT8", 16}
+            {"Stone Pick",2},{"Copper Pick",4},{"Iron Pick",6},{"Steel Pick",8},
+            {"Titanium Pick",10},{"Mithril Pick",12},{"Adamant Pick",14},{"Dragon Pick",16}
+        };
+        vector<toolInfo> skinningKnife = {
+            {"Stone Knife",2},{"Copper Knife",4},{"Iron Knife",6},{"Steel Knife",8},
+            {"Titanium Knife",10},{"Mithril Knife",12},{"Adamant Knife",14},{"Dragon Knife",16}
+        };
+        vector<toolInfo> shears = {
+            {"Stone Shears",2},{"Copper Shears",4},{"Iron Shears",6},{"Steel Shears",8},
+            {"Titanium Shears",10},{"Mithril Shears",12},{"Adamant Shears",14},{"Dragon Shears",16}
         };
         vector<toolInfo> sword = {
-            {"swordT1", 10}, 
-            {"swordT2", 50}, 
-            {"swordT3", 100}, 
-            {"swordT4", 500},
-            {"swordT5", 1000}, 
-            {"swordT6", 5000}, 
-            {"swordT7", 10000}, 
-            {"swordT8", 50000}
+            {"Stone Sword",10},{"Copper Sword",50},{"Iron Sword",100},{"Steel Sword",500},
+            {"Titanium Sword",1000},{"Mithril Sword",5000},{"Adamant Sword",10000},{"Dragon Sword",50000}
         };
         vector<armorInfo> helmet = {
-            {"helmetT1", 10}, 
-            {"helmetT2", 50}, 
-            {"helmetT3", 100}, 
-            {"helmetT4", 500},
-            {"helmetT5", 1000}, 
-            {"helmetT6", 5000}, 
-            {"helmetT7", 10000}, 
-            {"helmetT8", 50000}
+            {"Stone Helmet",10},{"Copper Helmet",50},{"Iron Helmet",100},{"Steel Helmet",500},
+            {"Titanium Helmet",1000},{"Mithril Helmet",5000},{"Adamant Helmet",10000},{"Dragon Helmet",50000}
         };
         vector<armorInfo> chestplate = {
-            {"chestplateT1", 10}, 
-            {"chestplateT2", 50}, 
-            {"chestplateT3", 100}, 
-            {"chestplateT4", 500},
-            {"chestplateT5", 1000}, 
-            {"chestplateT6", 5000}, 
-            {"chestplateT7", 10000}, 
-            {"chestplateT8", 50000}
+            {"Stone Chestplate",10},{"Copper Chestplate",50},{"Iron Chestplate",100},{"Steel Chestplate",500},
+            {"Titanium Chestplate",1000},{"Mithril Chestplate",5000},{"Adamant Chestplate",10000},{"Dragon Chestplate",50000}
         };
         vector<armorInfo> leggings = {
-            {"leggingsT1", 10}, 
-            {"leggingsT2", 50}, 
-            {"leggingsT3", 100}, 
-            {"leggingsT4", 500},
-            {"leggingsT5", 1000},
-             {"leggingsT6", 5000}, 
-             {"leggingsT7", 10000}, 
-             {"leggingsT8", 50000}
+            {"Stone Leggings",10},{"Copper Leggings",50},{"Iron Leggings",100},{"Steel Leggings",500},
+            {"Titanium Leggings",1000},{"Mithril Leggings",5000},{"Adamant Leggings",10000},{"Dragon Leggings",50000}
         };
         vector<armorInfo> boots = {
-            {"bootsT1", 10}, 
-            {"bootsT2", 50}, 
-            {"bootsT3", 100}, 
-            {"bootsT4", 500},
-            {"bootsT5", 1000}, 
-            {"bootsT6", 5000}, 
-            {"bootsT7", 10000}, 
-            {"bootsT8", 50000}
+            {"Stone Boots",10},{"Copper Boots",50},{"Iron Boots",100},{"Steel Boots",500},
+            {"Titanium Boots",1000},{"Mithril Boots",5000},{"Adamant Boots",10000},{"Dragon Boots",50000}
         };
 };
